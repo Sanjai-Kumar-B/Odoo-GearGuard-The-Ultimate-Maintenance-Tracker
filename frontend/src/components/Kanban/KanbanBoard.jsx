@@ -1,84 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { motion } from "framer-motion";
+import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useApp } from "../../context/AppContext";
 import KanbanColumn from "./KanbanColumn";
 
-const stages = ["New Request", "In Progress", "Repaired", "Scrap"];
+const stages = ["New", "In Progress", "Repaired", "Scrap"];
 
 const KanbanBoard = () => {
-  const [requests, setRequests] = useState([]);
+  const navigate = useNavigate();
+  const { requests, updateRequestStage } = useApp();
 
-  useEffect(() => {
-    fetchRequests();
-  }, []);
-
-  const fetchRequests = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/requests");
-      const data = await response.json();
-      setRequests(data);
-    } catch (error) {
-      console.error("Error fetching requests:", error);
-    }
-  };
-
-  const handleDragEnd = async (result) => {
+  const handleDragEnd = (result) => {
     const { source, destination, draggableId } = result;
 
     if (!destination) return;
     if (source.droppableId === destination.droppableId) return;
 
     const newStage = destination.droppableId;
-    const requestId = draggableId;
-
-    // Update request stage
-    try {
-      await fetch(`http://localhost:5000/api/requests/${requestId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stage: newStage }),
-      });
-
-      // Update local state
-      setRequests((prev) =>
-        prev.map((r) => (r.id === requestId ? { ...r, stage: newStage } : r))
-      );
-    } catch (error) {
-      console.error("Error updating request:", error);
-    }
+    updateRequestStage(draggableId, newStage);
   };
 
-  const groupedRequests = stages.reduce((acc, stage) => {
-    acc[stage] = requests.filter((r) => r.stage === stage);
-    return acc;
-  }, {});
-
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-3xl font-bold mb-8"
-      >
-        Maintenance Requests
-      </motion.h1>
+    <div className="p-8">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Maintenance Requests
+          </h1>
+          <p className="text-gray-600 mt-1">
+            Drag and drop requests between stages
+          </p>
+        </div>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => navigate("/maintenance/new")}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 font-medium shadow-sm"
+        >
+          <Plus className="w-5 h-5" />
+          New Request
+        </motion.button>
+      </div>
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {stages.map((stage, index) => (
-            <motion.div
-              key={stage}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <KanbanColumn
-                stage={stage}
-                requests={groupedRequests[stage] || []}
-              />
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {stages.map((stage, index) => {
+            const stageRequests = requests.filter((r) => r.stage === stage);
+            return (
+              <motion.div
+                key={stage}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <KanbanColumn stage={stage} requests={stageRequests} />
+              </motion.div>
+            );
+          })}
         </div>
       </DragDropContext>
     </div>
