@@ -4,10 +4,10 @@
 
 1. **Everyone:** Open this project in VS Code
 2. **Everyone:** Open 2 terminals each (one for frontend, one for backend)
-3. **Assign roles:**
-   - **Member 1:** Frontend Lead (Dashboard polish + Kanban)
-   - **Member 2:** Backend Lead (API testing + Smart features)
-   - **Member 3:** Forms & Integration (Equipment + Request forms)
+3. **Team Members:**
+   - **Sanjai Kumar:** Frontend Lead (Dashboard polish + Kanban)
+   - **Navanidhiram:** Backend Lead (API testing + Smart features)
+   - **Abee:** Forms & Integration (Equipment + Request forms)
 
 ---
 

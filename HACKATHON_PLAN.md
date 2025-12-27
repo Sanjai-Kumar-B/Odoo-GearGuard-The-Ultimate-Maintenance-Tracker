@@ -2,19 +2,19 @@
 
 ## Team Division (3 Members)
 
-### 👤 Member 1: Frontend Lead (Dashboard & UI)
+### 👤 Sanjai Kumar: Frontend Lead (Dashboard & UI)
 
 - Dashboard with stat cards
 - Kanban board view
 - Navigation & layout
 
-### 👤 Member 2: Backend Lead (API & Logic)
+### 👤 Navanidhiram: Backend Lead (API & Logic)
 
 - Database models
 - REST API endpoints
 - Business logic & automation
 
-### 👤 Member 3: Full Stack (Forms & Integration)
+### 👤 Abee: Full Stack (Forms & Integration)
 
 - Equipment forms
 - Request creation forms

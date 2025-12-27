@@ -251,17 +251,20 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 👏 Acknowledgments
 
-- Built with ❤️ during [Hackathon Name]
-- Team Members: [Your names]
+- Built with ❤️ during Odoo Hackathon 2025
+- Team Members: **Sanjai Kumar**, **Navanidhiram**, **Abee**
 - Inspired by modern maintenance management needs
 
 ---
 
 ## 📞 Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+**Team GearGuard:**
+- Sanjai Kumar - [GitHub](https://github.com/Sanjai-Kumar-B)
+- Navanidhiram
+- Abee
 
-Project Link: [https://github.com/yourusername/gearguard](https://github.com/yourusername/gearguard)
+Project Link: [https://github.com/Sanjai-Kumar-B/Odoo-GearGuard-The-Ultimate-Maintenance-Tracker](https://github.com/Sanjai-Kumar-B/Odoo-GearGuard-The-Ultimate-Maintenance-Tracker)
 
 ---
 
@@ -269,6 +272,6 @@ Project Link: [https://github.com/yourusername/gearguard](https://github.com/you
 
 **⭐ Star this repo if you find it helpful!**
 
-Made with ☕ and 💻 in 8 hours
+Made with ☕ and 💻 by **Sanjai Kumar, Navanidhiram & Abee**
 
 </div>
